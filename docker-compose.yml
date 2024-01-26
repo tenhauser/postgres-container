@@ -1,0 +1,24 @@
+# Deploy Postgres with container and volume.
+# !IMP - Change the placeholders in <> with your choices. These will be used for initiating the server if not already created.
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: <CHOOSE PASSWORD>
+      POSTGRES_USER: <CHOOSE ADMIN USER NAME>
+      POSTGRES_DB: <CHOOSE DB NAME>
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db-data:
